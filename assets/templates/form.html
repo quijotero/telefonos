@@ -1,0 +1,43 @@
+<form>
+  <fieldset>
+    <legend>{{ textButton }}</legend>
+
+    <div>
+      <div >
+        <label>Nombre</label>
+        <input type="text" placeholder="Nombre" ng-model="usuario.nombre" required>
+      </div>
+    </div>
+
+    <div >
+      <div>
+        <label>Apellidos</label>
+        <input type="text" placeholder="Apellidos" ng-model="usuario.apellidos" required>
+      </div>
+      <div>
+        <label>Telefono 1</label>
+        <input type="text" placeholder="Telefono 1" ng-model="usuario.telefono1" required>
+      </div>
+      <div>
+        <div>
+          <label>Telefono 2</label>
+            <input type="text" placeholder="Telefono 2" ng-model="usuario.telefono2" required>
+        </div>
+        <div>
+          <label>Departamento</label>
+          <select ng-model="usuario.departamento" ng-options="departamento as departamento.nombre for departamento in departamentos track by departamento.id" >
+              <option value="">--Elige opcion--</option>
+          </select>
+        </div>
+        <div>
+          <label>Servicio</label>
+          <select ng-model="usuario.servicio" ng-options="servicio as servicio.nombre for servicio in servicios track by servicio.id" >
+              <option value="">--Elige opcion--</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button type="submit"  >{{ textButton }}</button>
+     <a href="#/">Volver al inicio</a>
+  </fieldset>
+</form>
