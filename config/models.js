@@ -18,7 +18,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
   // connection: 'localDiskDb',
-
+   connection: 'LocalMySQL',
   /***************************************************************************
   *                                                                          *
   * How and whether Sails will attempt to automatically rebuild the          *
@@ -28,5 +28,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
    migrate: 'safe'
+   // Poner 'alter' si queremos que se creen las tablas automaticamente
+   //migrate: 'alter'
 
 };
