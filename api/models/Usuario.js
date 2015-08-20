@@ -19,12 +19,19 @@ module.exports = {
     telefono1: {
       type:'string',
       required: false,
-      defaultsTo: '000-112233'
     },
     telefono2: {
       type:'string',
       required: false,
       defaultsTo: '000000'
+    },
+    correo: {
+      type:'string',
+      required: false,
+    },
+    sede: {
+      type:'string',
+      required: false,
     },
     departamento: {
       model: 'departamento'

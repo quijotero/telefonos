@@ -1,3 +1,4 @@
+
 <form>
   <fieldset>
     <legend>{{ textButton }}</legend>
@@ -19,22 +20,28 @@
         <input type="text" placeholder="Telefono 1" ng-model="usuario.telefono1" required>
       </div>
       <div>
-        <div>
-          <label>Telefono 2</label>
-            <input type="text" placeholder="Telefono 2" ng-model="usuario.telefono2" required>
-        </div>
-        <div>
-          <label>Departamento</label>
-          <select ng-model="usuario.departamento" ng-options="departamento as departamento.nombre for departamento in departamentos track by departamento.id" >
-              <option value="">--Elige opcion--</option>
-          </select>
-        </div>
-        <div>
-          <label>Servicio</label>
-          <select ng-model="usuario.servicio" ng-options="servicio as servicio.nombre for servicio in servicios track by servicio.id" >
-              <option value="">--Elige opcion--</option>
-          </select>
-        </div>
+        <label>Telefono 2</label>
+          <input type="text" placeholder="Telefono 2" ng-model="usuario.telefono2" required>
+      </div>
+      <div>
+        <label>Correo</label>
+          <input type="text" placeholder="Correo" ng-model="usuario.correo" required>
+      </div>
+      <div>
+        <label>Sede</label>
+          <input type="text" placeholder="Sede" ng-model="usuario.sede" required>
+      </div>
+      <div>
+        <label>Departamento</label>
+        <select ng-model="usuario.departamento" ng-options="departamento as departamento.nombre for departamento in departamentos track by departamento.id" >
+            <option value="">--Elige opcion--</option>
+        </select>
+      </div>
+      <div>
+        <label>Servicio</label>
+        <select ng-model="usuario.servicio" ng-options="servicio as servicio.nombre for servicio in servicios track by servicio.id" >
+            <option value="">--Elige opcion--</option>
+        </select>
       </div>
     </div>
     <button type="submit"  >{{ textButton }}</button>

@@ -1,44 +1,57 @@
+//Servicios REST que llaman a la API de Sails via $resource
+
 //Factoria para consumir entidad usuarios
-//Llamamos a la API REST para obtener la lista de usuarios
-app.factory("apiUsuarios", function ($resource) {
-  console.debug("Recuperando datos de la API de usuarios...");
-  return  $resource("/usuario/:id", //la url donde queremos consumir
-        {id: '@id'}, //aquí podemos pasar variables que queramos pasar a la consulta
-        //a la función get le decimos el método, y, si es un array lo que devuelve
-        //ponemos isArray en true
+app.factory("usuarioService", function ($resource) {
+  return  {
+    api:
+    $resource("/usuario/:id", //la url donde queremos consumir
+        //aquí podemos pasar variables que queramos pasar a la consulta
+        {id: '@id',limit: '@limit',skip: '@skip'},
         {
              query: {method: 'GET', isArray: false},
             update: {method: 'PUT'},
             delete: {method: 'DELETE'}
         }
-    );
-});
-//Factoria para consumir la entidad departamento
-app.factory("apiDepartamentos", function ($resource) {
-  console.debug("Recuperando datos de la API de departamentos...");
-  return  $resource("/departamento/:id", //la url donde queremos consumir
-        {id: '@id'}, //aquí podemos pasar variables que queramos pasar a la consulta
-        //a la función get le decimos el método, y, si es un array lo que devuelve
-        //ponemos isArray en true
-        {
-             query: {method: 'GET', isArray: false},
-            update: {method: 'PUT'},
-            delete: {method: 'DELETE'}
-        }
-    );
+    ),
+    //Funcion que permite mostrar los resultados en distintas páginas
+    irPagina: function($scope,apiUsuarios,pagina,numeroRegistros) {
+      var saltarRegistros = (pagina -1) * numeroRegistros
+      //llama a la API saltando determinados registros según la página
+      apiUsuarios.api.get({limit: numeroRegistros,skip:  saltarRegistros })
+        .$promise.then(function(data) {
+          $scope.totalUsuarios =  data.total;
+          $scope.usuarios = data.results;
+        });
+    }
+  }
 });
 
 //Factoria para consumir la entidad departamento
-app.factory("apiServicios", function ($resource) {
-  console.debug("Recuperando datos de la API de Servicios...");
-  return  $resource("/servicio/:id", //la url donde queremos consumir
+app.factory("departamentoService", function ($resource) {
+  return  {
+    api:
+    $resource("/departamento/:id", //la url donde queremos consumir
         {id: '@id'}, //aquí podemos pasar variables que queramos pasar a la consulta
-        //a la función get le decimos el método, y, si es un array lo que devuelve
-        //ponemos isArray en true
         {
              query: {method: 'GET', isArray: false},
             update: {method: 'PUT'},
             delete: {method: 'DELETE'}
         }
-    );
+    )
+  }
+});
+
+//Factoria para consumir la entidad departamento
+app.factory("servicioService", function ($resource) {
+  return {
+    api:
+    $resource("/servicio/:id", //la url donde queremos consumir
+        {id: '@id'}, //aquí podemos pasar variables que queramos pasar a la consulta
+        {
+             query: {method: 'GET', isArray: false},
+            update: {method: 'PUT'},
+            delete: {method: 'DELETE'}
+        }
+    )
+  }
 });

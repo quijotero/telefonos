@@ -7,20 +7,31 @@ el array usuarios y mostramos un mensaje-->
 le damos como ng-model el mismo que le demos al atributo filter en el loop de abajo,
 aparte de un buscador es un autocompletar, y más sencillo no puede ser-->
 <!--sólo si hay usuarios mostramos el buscador-->
-<input type="text" ng-model="buscador"  ng-show="usuarios.length > 0" />
-<!--como nuestros usuarios no tienen id, la forma de poder eliminarlos es recorriendo
-el array añadiendo la clave id, así podremos saber a cuál hacer referencia, de esta forma
-al añadir usuarios y no tener definida su id, angularjs le asignará la siguiente al último usuario
-existente, es decir, un campo autoincremental-->
-	<div ng-repeat="usuario in usuarios | filter: buscador">
-
-	        <a href="#/info/{{usuario.id}}">
-	        	Nombre: {{ usuario.nombre}} Apellidos: {{ usuario.apellidos }} Teléfono 1: {{ usuario.telefono1 }} Teléfono 2: {{ usuario.telefono2 }}
-						Departamento: {{usuario.departamento.nombre}} Servicio: {{usuario.servicio.nombre}}
-	        </a>
-	       <!--aquí mostramos los dos botones, uno para ir a editar al usuario y otro para ir a eliminarlo-->
-	      <div>
-				  <div><a href="#/edit/{{usuario.id}}">Editar</a></div>
-				  <div> <a href="#/remove/{{usuario.id}}">Eliminar</a></div>
-			</div>
+<input type="text" ng-model="buscador"  ng-show="usuarios.length > 0" placeholder="Introduce nombre a buscar" />
+	<div class="table-responsive">
+		<table class="table table-hover table-striped table-condensed">
+			<tr class="info">
+				<th>Nombre</th>
+				<th>Apellidos</th>
+				<th>Teléfono 1</th>
+				<th>Teléfono 2</th>
+				<th>Departamento</th>
+				<th>Servicio</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="usuario in usuarios | filter: buscador">
+				<td>{{ usuario.nombre}}</td>
+				<td>{{ usuario.apellidos}}</td>
+				<td>{{ usuario.telefono1}}</td>
+				<td>{{ usuario.telefono2}}</td>
+				<td>{{ usuario.departamento.nombre}}</td>
+				<td>{{ usuario.servicio.nombre}}</td>
+				<td>  <div><a  class="btn btn-success btn-xs" href="#/edit/{{usuario.id}}">Editar</a></div> </td>
+				<td>  <div><a  class="btn btn-danger btn-xs" ng-click="removeUsuarioOpen(usuario.id)">Eliminar</a></div> </td>
+				<td>  <div><a  class="btn btn-info btn-xs" ng-click="infoUsuarioOpen(usuario.id)">+Info</a></div> </td>
+			</tr>
+		</table>
+		<pagination total-items="totalUsuarios" items-per-page="registrosPorPagina" ng-model="paginaActual" ng-change="cambioPagina()"></pagination>
 	</div>

@@ -1,10 +1,17 @@
-<h1 >Información del usuario {{ usuario.nombre }}</h1>
-<div>
-  	<p>Nombre: {{ usuario.nombre }}</p>
-  	<p>Apellidos: {{ usuario.apellidos }}</p>
-  	<p>Telefono 1: {{ usuario.telefono1 }}</p>
-  	<p>Telefono 2: {{ usuario.telefono2 }}</p>
-    <p>Departamento: {{ usuario.departamento.nombre }}</p>
-    <p>Servicio: {{ usuario.servicio.nombre }}</p>
-  	<a href="#/">Volver al inicio</a>
+<div class="modal-header">
+    <h3 class="modal-title">Información del Usuario {{ usuario.nombre}}</h3>
+</div>
+<div class="modal-body">
+      <p>Nombre: {{ usuario.nombre }}</p>
+      <p>Apellidos: {{ usuario.apellidos }}</p>
+      <p>Telefono 1: {{ usuario.telefono1 }}</p>
+      <p>Telefono 2: {{ usuario.telefono2 }}</p>
+      <p>Correo: {{ usuario.correo }}</p>
+      <p>Sede: {{ usuario.sede }}</p>
+      <p>Departamento: {{ usuario.departamento.nombre }}</p>
+      <p>Servicio: {{ usuario.servicio.nombre }}</p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">Cerrar</button>
+
 </div>

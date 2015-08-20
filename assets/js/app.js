@@ -1,16 +1,13 @@
 //creamos nuestro modulo llamado app
-var app = angular.module("app", ["ngResource","ngRoute"]);
+var app = angular.module("app", ["ngResource","ngRoute","ui.bootstrap"]);
 
 //hacemos el ruteo de nuestra aplicación
 app.config(function($routeProvider){
 	$routeProvider.when("/", {
-		templateUrl : "templates/index.html"
+		templateUrl : "templates/index.html",
+		controller : "indexController"
 	})
 	//esta es la forma de decirle a angular que vamos a pasar una variable por la url
-	.when('/info/:id', {
-      templateUrl : "templates/info.html",
-     controller : "infoController"
-    })
 	.when("/add", {
 		title: 'Añadir usuario',
 		templateUrl : "templates/add.html",
@@ -21,10 +18,5 @@ app.config(function($routeProvider){
 		templateUrl : "templates/edit.html",
 		controller : "editController"
 	})
- 	.when("/remove/:id", {
- 		title: 'Eliminar usuario',
- 		templateUrl : "templates/remove.html",
- 		controller : "removeController"
- 	})
  	.otherwise({ redirectTo : "/"})
 })
