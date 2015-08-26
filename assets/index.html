@@ -17,11 +17,18 @@
 	<body>
 		<!--añadimos aquí el controlador appController ya que será donde mostremos los usuarios-->
 		<div ng-controller="appController" class="container">
-			<h1>Listín Telefónico</h1>
-			<ul>
-				  <li><a href="#/">Inicio</a></li>
-				  <li><a href="#/add">Añadir usuario</a></li>
-		  </ul>
+			<!-- barra superior de navegación -->
+			<nav role="navigation" class="navbar navbar-default">
+        <div class="navbar-header">
+            <a href="#/" class="navbar-brand">Listín Telefónico</a>
+        </div>
+            <ul class="nav navbar-nav">
+                <li ng-class="{ active: isActive('/') }"><a href="#/">Inicio</a></li>
+                <li ng-class="{ active: isActive('/add') }"><a href="#/add">Añadir usuario</a></li>
+								<li ng-class="{ active: isActive('/about') }"><a href="#/about">Acerca de</a></li>
+								<li ng-class="{ active: isActive('/login') }"><a href="#/login">Administrar</a></li>
+            </ul>
+			</nav>
 		  <!--aquí es donde cargarán todas las vistas dependiendo de la url-->
 			<div ng-view></div>
 			<!--aquí es el pie de página-->

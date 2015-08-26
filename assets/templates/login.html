@@ -1,0 +1,13 @@
+<form name="formulario" novalidate ng-submit="login(formulario.$valid)">
+  <div class="form-group" ng-class="{'has-error': campoIncorrecto(formulario.nombre)}">
+   <label>Nombre</label>
+   <input name="nombre" type="text" class="form-control" placeholder="Nombre" ng-model="usuario.nombre" ng-minlength="3" required>
+   <p ng-show="campoIncorrecto(formulario.nombre)" class="help-block">* Campo necesario. Mínimo 3 caracteres</p>
+  </div>
+  <div class="form-group" ng-class="{'has-error': campoIncorrecto(formulario.password)}">
+   <label>Contraseña</label>
+   <input name="password" type="password" class="form-control" placeholder="Conttraseña" ng-model="usuario.password" ng-minlength="3" required>
+   <p ng-show="campoIncorrecto(formulario.password)" class="help-block">* Campo necesario. Mínimo 3 caracteres</p>
+  </div>
+  <button class="btn btn-primary" type="submit" >Iniciar Sesión</button>
+</form>

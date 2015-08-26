@@ -6,7 +6,7 @@ app.factory("usuarioService", function ($resource) {
     api:
     $resource("/usuario/:id", //la url donde queremos consumir
         //aquí podemos pasar variables que queramos pasar a la consulta
-        {id: '@id',limit: '@limit',skip: '@skip'},
+        {id: '@id',limit: '@limit',skip: '@skip',sort: '@orden'},
         {
              query: {method: 'GET', isArray: false},
             update: {method: 'PUT'},
@@ -14,10 +14,10 @@ app.factory("usuarioService", function ($resource) {
         }
     ),
     //Funcion que permite mostrar los resultados en distintas páginas
-    irPagina: function($scope,apiUsuarios,pagina,numeroRegistros) {
+    irPagina: function($scope,apiUsuarios,pagina,numeroRegistros,orden) {
       var saltarRegistros = (pagina -1) * numeroRegistros
       //llama a la API saltando determinados registros según la página
-      apiUsuarios.api.get({limit: numeroRegistros,skip:  saltarRegistros })
+      apiUsuarios.api.get({limit: numeroRegistros,skip:  saltarRegistros,sort: orden })
         .$promise.then(function(data) {
           $scope.totalUsuarios =  data.total;
           $scope.usuarios = data.results;

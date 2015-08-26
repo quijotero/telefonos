@@ -1,14 +1,14 @@
 //Controlador de la pagina principal
 app.controller("indexController", ["$scope","usuarioService","$modal",
 	function($scope,usuarioService,$modal){
-		
+
 	//Para paginar la tabla cuando hay muchos registros
 	$scope.registrosPorPagina = 25;
   $scope.paginaActual = 1;
-	usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina);
+	usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC");
 	//Funcion llamada al cambiar de pagina el usuario
 	$scope.cambioPagina = function() {
-		usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina);
+		usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC");
 		console.debug("Pagina actual:" + $scope.paginaActual);
   };
 
@@ -52,7 +52,7 @@ app.controller("indexController", ["$scope","usuarioService","$modal",
 		removeUsuario.result.then(function () {
 			//Cerrada pulsado Borrar
 			//Refrescamos la tabla en la pagina actual
-			usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina);
+			usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC");
 		}, function () {
 			//Cerrada pulsado Cancelar
 			console.debug('Eliminación de usuario cancelada');

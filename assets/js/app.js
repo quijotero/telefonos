@@ -18,5 +18,10 @@ app.config(function($routeProvider){
 		templateUrl : "templates/edit.html",
 		controller : "editController"
 	})
+	.when("/login", {
+		title: 'Login usuario',
+		templateUrl : "templates/login.html",
+		controller : "loginController"
+	})
  	.otherwise({ redirectTo : "/"})
 })

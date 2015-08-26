@@ -1,50 +1,48 @@
-
 <form>
-  <fieldset>
-    <legend>{{ textButton }}</legend>
-
-    <div>
-      <div >
-        <label>Nombre</label>
-        <input type="text" placeholder="Nombre" ng-model="usuario.nombre" required>
-      </div>
-    </div>
-
-    <div >
-      <div>
-        <label>Apellidos</label>
-        <input type="text" placeholder="Apellidos" ng-model="usuario.apellidos" required>
-      </div>
-      <div>
-        <label>Telefono 1</label>
-        <input type="text" placeholder="Telefono 1" ng-model="usuario.telefono1" required>
-      </div>
-      <div>
-        <label>Telefono 2</label>
-          <input type="text" placeholder="Telefono 2" ng-model="usuario.telefono2" required>
-      </div>
-      <div>
-        <label>Correo</label>
-          <input type="text" placeholder="Correo" ng-model="usuario.correo" required>
-      </div>
-      <div>
-        <label>Sede</label>
-          <input type="text" placeholder="Sede" ng-model="usuario.sede" required>
-      </div>
-      <div>
-        <label>Departamento</label>
-        <select ng-model="usuario.departamento" ng-options="departamento as departamento.nombre for departamento in departamentos track by departamento.id" >
-            <option value="">--Elige opcion--</option>
-        </select>
-      </div>
-      <div>
-        <label>Servicio</label>
-        <select ng-model="usuario.servicio" ng-options="servicio as servicio.nombre for servicio in servicios track by servicio.id" >
-            <option value="">--Elige opcion--</option>
-        </select>
-      </div>
-    </div>
-    <button type="submit"  >{{ textButton }}</button>
-     <a href="#/">Volver al inicio</a>
-  </fieldset>
+  <div class="form-group" ng-class="{'has-error': campoIncorrecto(formulario.nombre)}">
+   <label>Nombre</label>
+   <input name="nombre" type="text" class="form-control" placeholder="Nombre" ng-model="usuario.nombre" ng-minlength="3" required>
+   <p ng-show="campoIncorrecto(formulario.nombre)" class="help-block">* Campo necesario. Mínimo 3 caracteres</p>
+  </div>
+  <div class="form-group" ng-class="{'has-error': campoIncorrecto(formulario.apellidos)}">
+   <label>Apellidos</label>
+   <input name="apellidos "type="text" class="form-control" placeholder="Apellidos" ng-model="usuario.apellidos" ng-minlength="3" required>
+   <p ng-show="campoIncorrecto(formulario.apellidos)" class="help-block">* Campo necesario. Mínimo 3 caracteres</p>
+  </div>
+  <div class="form-group" ng-class="{'has-error': campoIncorrecto(formulario.telefono1)}">
+   <label>Teléfono 1</label>
+   <input name="telefono1" type="text" class="form-control" placeholder="formato: 957-123456" ng-pattern="/^\d{3}[-]\d{6}$/" ng-model="usuario.telefono1">
+   <p ng-show="campoIncorrecto(formulario.telefono1)" class="help-block">* Formato erróneo. Ejemplo: 957-123456</p>
+  </div>
+  <div class="form-group" ng-class="{'has-error': campoIncorrecto(formulario.telefono2)}">
+   <label>Teléfono 2</label>
+   <input name="telefono2" type="text" class="form-control" placeholder="formato: 123456" ng-pattern="/^\d{6}$/" ng-model="usuario.telefono2">
+   <p ng-show="campoIncorrecto(formulario.telefono2)" class="help-block">* Formato erróneo. Ejemplo: 123456</p>
+  </div>
+  <div class="form-group" ng-class="{'has-error': campoIncorrecto(formulario.correo)}">
+   <label>Correo Electrónico</label>
+   <input name="correo" type="email" class="form-control" placeholder="nombre@dominio.com" ng-model="usuario.correo">
+   <p ng-show="campoIncorrecto(formulario.correo)" class="help-block">* Campo erróneo. Revise el formato del correo</p>
+  </div>
+  <div class="form-group" ng-class="{'has-error': campoIncorrecto(formulario.sede)}">
+   <label>Sede</label>
+   <input name="sede" type="text" class="form-control" placeholder="Sede" ng-model="usuario.sede" ng-minlength="3">
+   <p ng-show="campoIncorrecto(formulario.sede)" class="help-block">* Campo erróneo. Mínimo 3 caracteres</p>
+  </div>
+  <div class="form-group" ng-class="{'has-error': campoIncorrecto(formulario.departamento)}">
+   <label>Departamento</label>
+   <select name="departamento" class="form-control" ng-model="usuario.departamento" ng-options="departamento as departamento.nombre for departamento in departamentos track by departamento.id" required>
+     <option value="">-- Elige opción --</option>
+   </select>
+   <p ng-show="campoIncorrecto(formulario.departamento)" class="help-block">* Seleccione un departamento, por favor.</p>
+  </div>
+  <div class="form-group" ng-class="{'has-error': campoIncorrecto(formulario.servicio)}">
+   <label>Servicio</label>
+   <select name="servicio" class="form-control" ng-model="usuario.servicio" ng-options="servicio as servicio.nombre for servicio in servicios track by servicio.id" required>
+     <option value="">-- Elige opción --</option>
+   </select>
+   <p ng-show="campoIncorrecto(formulario.servicio)" class="help-block">* Seleccione un servicio, por favor.</p>
+  </div>
+  <button class="btn btn-primary" type="submit" >{{ textButton }}</button>
+  <a class="btn btn-success" href="#/">Volver al inicio</a>
 </form>

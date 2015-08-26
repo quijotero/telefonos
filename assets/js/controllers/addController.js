@@ -17,20 +17,30 @@ app.controller("addController",[
 			$scope.servicios = data.results;
 			console.debug("Total servicios recuperados:" + data.total);
 	});
-	$scope.newUser = function(){
- 		//Para guardarlo con $resource llamando a la API
-		var record = new usuarioService.api();
-		record.nombre = $scope.usuario.nombre;
-		record.apellidos = $scope.usuario.apellidos;
-		record.telefono1 = $scope.usuario.telefono1;
-		record.telefono2 = $scope.usuario.telefono2;
-		record.correo    = $scope.usuario.correo;
-		record.sede      = $scope.usuario.sede;
-		record.departamento = $scope.usuario.departamento;
-		record.servicio = $scope.usuario.servicio;
-		record.$save(function() {
-			console.debug("Nuevo usuario creado");
-			$location.url("/");
-		})
+	//Funcion que crea un usuario nuevo en la bbdd via API Rest
+	$scope.crearUsuario = function(formularioValido){
+		$scope.formularioEnviado = true;
+		if(formularioValido)
+		{
+	 		//Para guardarlo con $resource llamando a la API
+			var record = new usuarioService.api();
+			record.nombre = $scope.usuario.nombre;
+			record.apellidos = $scope.usuario.apellidos;
+			record.telefono1 = $scope.usuario.telefono1;
+			record.telefono2 = $scope.usuario.telefono2;
+			record.correo    = $scope.usuario.correo;
+			record.sede      = $scope.usuario.sede;
+			record.departamento = $scope.usuario.departamento;
+			record.servicio = $scope.usuario.servicio;
+			record.$save(function() {
+				console.debug("Nuevo usuario creado");
+				$location.url("/");
+			})
+		}
+	}
+	//Funcion que comprueba si el formulario ya ha sido enviado y tiene ese campo
+	//con un valor incorrecto, entonces devuelve TRUE, si todo es correcto FALSE
+	$scope.campoIncorrecto = function (campo) {
+		return  (campo.$invalid &&  $scope.formularioEnviado);
 	}
 }]);
