@@ -26,14 +26,38 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
-
+	'*': true,
+		
+	'UsuarioController': {
+		'create': 'isAuthenticated',
+		'update': 'isAuthenticated',
+		'destroy': 'isAuthenticated',
+		'remove': 'isAuthenticated',
+		'add': 'isAuthenticated'
+	},
+	'DepartamentoController': {
+		'create': 'isAuthenticated',
+		'update': 'isAuthenticated',
+		'destroy': 'isAuthenticated',
+		'remove': 'isAuthenticated',
+		'add': 'isAuthenticated'		
+	},
+	'ServicioController': {
+		'create': 'isAuthenticated',
+		'update': 'isAuthenticated',
+		'destroy': 'isAuthenticated',
+		'remove': 'isAuthenticated',
+		'add': 'isAuthenticated'
+	}
+	
+	
   /***************************************************************************
   *                                                                          *
   * Here's an example of mapping some policies to run before a controller    *
   * and its actions                                                          *
   *                                                                          *
   ***************************************************************************/
+
 	// RabbitController: {
 
 		// Apply the `false` policy as the default for all of RabbitController's actions
