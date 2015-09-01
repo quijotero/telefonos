@@ -17,7 +17,8 @@ module.exports = {
 
     login: function(req, res) {
 
-        passport.authenticate('local', function(err, user, info) {
+        passport.authenticate('local',
+          function(err, user, info) {
             if ((err) || (!user)) {
                 return res.send({
                     message: info.message,
@@ -26,10 +27,11 @@ module.exports = {
             }
             req.logIn(user, function(err) {
                 if (err) res.send(err);
-                return res.send({
+                /*return res.send({
                     message: info.message,
                     user: user
-                });
+                });*/
+                return res.redirect("/");
             });
 
         })(req, res);
@@ -37,6 +39,14 @@ module.exports = {
 
     logout: function(req, res) {
         req.logout();
-        res.redirect('/');
+        res.redirect("/");
+    },
+
+    /** Funcion para saber si un usuario está autentificado en este momento.
+    * 	Devuelve 0 a AngularJs para indicar que no está autentificado y ya
+    *   actuará en consecuencia desde la parte cliente
+    */
+    loggedin: function(req,res) {
+        res.send(req.isAuthenticated() ? req.user : res.status(401).send('0'));
     }
 };

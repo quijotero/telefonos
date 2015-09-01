@@ -2,7 +2,10 @@
 var app = angular.module("app", ["ngResource","ngRoute","ui.bootstrap"]);
 
 //hacemos el ruteo de nuestra aplicación
-app.config(function($routeProvider){
+app.config(function($routeProvider, $locationProvider, $httpProvider){
+	//================================================
+	//RUTEO DE LA APLICACION
+	//================================================
 	$routeProvider.when("/", {
 		templateUrl : "templates/index.html",
 		controller : "indexController"

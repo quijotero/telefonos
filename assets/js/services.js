@@ -55,3 +55,14 @@ app.factory("servicioService", function ($resource) {
     )
   }
 });
+
+/** Servicio que consulta la API en la ruta /loggedin para saber si el usuario
+*   actual está autentificado. La API devuelve 0 si no lo está o un objeto con
+*   varias propiedades si está autentificado.
+*/
+app.service('autentificadoService', ['$http', function($http) {
+  var urlBase = '/loggedin';
+  this.get= function() {
+    return $http.get(urlBase);
+  }
+}]);

@@ -30,8 +30,8 @@ aparte de un buscador es un autocompletar, y más sencillo no puede ser-->
 				<td ng-click="infoUsuarioOpen(usuario.id)">{{ usuario.telefono2}}</td>
 				<td ng-click="infoUsuarioOpen(usuario.id)">{{ usuario.departamento.nombre}}</td>
 				<td ng-click="infoUsuarioOpen(usuario.id)">{{ usuario.servicio.nombre}}</td>
-				<td>  <div><a  class="btn btn-success btn-xs" href="#/edit/{{usuario.id}}">Editar</a></div> </td>
-				<td>  <div><a  class="btn btn-danger btn-xs" ng-click="removeUsuarioOpen(usuario.id)">Eliminar</a></div> </td>
+				<td ng-if="usuarioAutentificado">  <div><a  class="btn btn-success btn-xs" href="#/edit/{{usuario.id}}">Editar</a></div> </td>
+				<td ng-if="usuarioAutentificado">  <div><a  class="btn btn-danger btn-xs" ng-click="removeUsuarioOpen(usuario.id)">Eliminar</a></div> </td>
 			</tr>
 		</table>
 		<pagination total-items="totalUsuarios" items-per-page="registrosPorPagina"

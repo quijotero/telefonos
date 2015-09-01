@@ -7,10 +7,16 @@ Angular + ui-bootstrap: front-end
 
 TODO:
 
-- (ahora) Pedir autentificación para poder modificar datos de los usuarios
+- (ok) Pedir autentificación para poder modificar datos de los usuarios
+- (ok) controlar acceso desde angular consultado /loggedin
+- hacer un modo dar alta nuevos accesos de administrador y activarlo por
+  politicas o no.
+- mejorar codigo de autentificacion (servicio y controlador)
+- quitar comentarios en consola
+- errores en consola por pagina no encontrada
 - (ok) Modificar y alta usuarios más bonita
 - Ordenar tabla por varios campos, usando ngTable/ngGrid
-- Seguridad en la API Sails
+- (ok) Seguridad en la API Sails
 - (ok) Controlar datos introducidos en el formulario
 - (ok) Posible paginación de los registros devueltos si son muchos
 - (ok) Migrar datos de telefonos y añadir otros campos => mysqlimport usado

@@ -7,7 +7,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    User.findOne({ id: id } , function (err, user) {
+    Acceso.findOne({ id: id } , function (err, user) {
         done(err, user);
     });
 });
@@ -18,7 +18,7 @@ passport.use(new LocalStrategy({
   },
   function(nombre, password, done) {
 
-    User.findOne({ nombre: nombre }, function (err, user) {
+    Acceso.findOne({ nombre: nombre }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Usuario incorrecto.' });
@@ -30,7 +30,7 @@ passport.use(new LocalStrategy({
               message: 'Clave incorrecta.'
             });
           var returnUser = {
-            usuario: user.nombre,
+            nombre: user.nombre,
             createdAt: user.createdAt,
             id: user.id
           };

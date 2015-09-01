@@ -51,5 +51,7 @@ module.exports.routes = {
   'post /login': 'AuthController.login',
 
   '/logout': 'AuthController.logout',
-  
+
+  '/loggedin': 'AuthController.loggedin'
+
 };

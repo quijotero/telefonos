@@ -26,8 +26,8 @@
                 <li ng-class="{ active: isActive('/') }"><a href="#/">Inicio</a></li>
                 <li ng-class="{ active: isActive('/add') }"><a href="#/add">Añadir usuario</a></li>
 								<li ng-class="{ active: isActive('/about') }"><a href="#/about">Acerca de</a></li>
-								<li ng-class="{ active: isActive('/login') }"><a href="#/login">Administrar</a></li>
-								<li ng-show="true"><a href="/logout">Salir</a></li>
+								<li ng-if="!usuarioAutentificado" ng-class="{ active: isActive('/login') }"><a href="#/login">Login</a></li>
+								<li ng-if="usuarioAutentificado"><a href="/logout">Logout</a></li>
             </ul>
 			</nav>
 		  <!--aquí es donde cargarán todas las vistas dependiendo de la url-->
