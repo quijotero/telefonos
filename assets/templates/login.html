@@ -1,4 +1,4 @@
-<form name="formulario" novalidate  method="POST" action="/login">
+<form name="formulario" novalidate method="POST" ng-submit="login(formulario.$valid)">
   <div class="form-group" ng-class="{'has-error': campoIncorrecto(formulario.nombre)}">
    <label>Usuario</label>
    <input name="nombre" type="text" class="form-control" placeholder="Usuario" ng-model="usuario.nombre" ng-minlength="3" required>
@@ -9,5 +9,6 @@
    <input name="password" type="password" class="form-control" placeholder="Contraseña" ng-model="usuario.password" ng-minlength="3" required>
    <p ng-show="campoIncorrecto(formulario.password)" class="help-block">* Campo necesario. Mínimo 3 caracteres</p>
   </div>
+  <p ng-show="loginIncorrecto()" class="alert alert-danger" role="alert"><strong>Error de autentificación:</strong> usuario o contraseña incorrectos</p>
   <button class="btn btn-primary" type="submit" >Iniciar Sesión</button>
 </form>

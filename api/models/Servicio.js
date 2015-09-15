@@ -10,10 +10,13 @@ module.exports = {
   attributes: {
 		nombre: {
 			type: 'string'
-		},
-		usuarios: {
+		}
+    /* No hace falta la relacion inversa, saber usuarios de un servicio solo la
+       directa, el servicio de un usuario, sino añadir esto */
+    /*,usuarios: {
 			collection: 'usuario',
 			via: 'servicio'
 		}
+    */
 	}
 };

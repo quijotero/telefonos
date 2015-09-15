@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Acceso denegado</title>
+  </head>
+  <body>
+      <div class="main">
+        <h1>
+          Acceso denegado
+        </h1>
+        <h2>
+          <% if (typeof error !== 'undefined') { %>
+          <%= error %>
+          <% } else { %>
+          No tienes permiso para acceder sin autentificarte primero
+          <% } %>
+        </h2>
+        <p class="help">
+          <a href="http://en.wikipedia.org/wiki/HTTP_403">Pulsa aquí</a> para ver el tipo de error
+        </p>
+      </div>
+
+    </div>
+
+  </body>
+</html>

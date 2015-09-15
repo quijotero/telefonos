@@ -56,13 +56,48 @@ app.factory("servicioService", function ($resource) {
   }
 });
 
-/** Servicio que consulta la API en la ruta /loggedin para saber si el usuario
-*   actual está autentificado. La API devuelve 0 si no lo está o un objeto con
-*   varias propiedades si está autentificado.
-*/
-app.service('autentificadoService', ['$http', function($http) {
-  var urlBase = '/loggedin';
-  this.get= function() {
-    return $http.get(urlBase);
+//Factoria para consumir la entidad acceso
+app.factory("accesoService", function ($resource) {
+  return  {
+    api:
+    $resource("/acceso/:id", //la url donde queremos consumir
+        {id: '@id'}, //aquí podemos pasar variables que queramos pasar a la consulta
+        {
+             query: {method: 'GET', isArray: false},
+            update: {method: 'PUT'},
+            delete: {method: 'DELETE'}
+        }
+    )
   }
-}]);
+});
+
+/** Provider que consulta la API en la ruta /loggedin para saber si el usuario
+*   actual está autentificado. La API devuelve error 401 si no lo está o
+*   un objeto con varias propiedades si está autentificado. Tambien puede
+*   devolver 0 si hay algún problema con el usuario. Para usarla llamar a la
+*   funcion pasándole dos funciones como parametros: Ok() y Error()
+*/
+function autentificadoProvider() {
+  this.$get=['$http',function($http) {
+    return new autentificado($http);
+  }];
+}
+function autentificado($http) {
+  this.get=function(fnOK,fnError) {
+        $http({
+          method: 'GET',
+          url: "/loggedin"
+        }).success(function(data, status, headers, config) {
+            if(data == 0) { //problema con el usuario autentificado
+              fnError(data,status);
+            }
+            else {
+              fnOK(data);
+            }
+        }).error(function(data, status, headers, config) {
+            //no ha podido recuperar la informacion del servidor,error 401
+            fnError(data,status);
+        });
+      }
+}
+app.provider("autentificado",autentificadoProvider);

@@ -1,6 +1,6 @@
 <!DOCTYPE  html>
 <!--ng-app hace referencia al nombre de nuestro modulo-->
-<html lang="es" ng-app="app">
+<html lang="es" >
 	<head>
 		<title>Listín Telefónico</title>
 		<!-- Viewport mobile tag for sensible mobile support -->
@@ -8,13 +8,16 @@
 		<meta charset="UTF-8" />
 		<!--STYLES-->
     <!--STYLES END-->
+		<!-- Permite ejecutarse en intranet desde IE11 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
     <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	</head>
-	<body>
+	<body ng-app="app">
+
 		<!--añadimos aquí el controlador appController ya que será donde mostremos los usuarios-->
 		<div ng-controller="appController" class="container">
 			<!-- barra superior de navegación -->
@@ -25,9 +28,9 @@
             <ul class="nav navbar-nav">
                 <li ng-class="{ active: isActive('/') }"><a href="#/">Inicio</a></li>
                 <li ng-class="{ active: isActive('/add') }"><a href="#/add">Añadir usuario</a></li>
-								<li ng-class="{ active: isActive('/about') }"><a href="#/about">Acerca de</a></li>
 								<li ng-if="!usuarioAutentificado" ng-class="{ active: isActive('/login') }"><a href="#/login">Login</a></li>
 								<li ng-if="usuarioAutentificado"><a href="/logout">Logout</a></li>
+								<li><a ng-click="acercadeOpen()">Acerca de</a></li>
             </ul>
 			</nav>
 		  <!--aquí es donde cargarán todas las vistas dependiendo de la url-->

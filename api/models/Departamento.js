@@ -10,10 +10,6 @@ module.exports = {
   attributes: {
 		nombre: {
 			type: 'string'
-		},
-		usuarios:{
-			collection: 'usuario',
-			via: 'departamento'
 		}
 	}
 };

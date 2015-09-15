@@ -26,50 +26,44 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-	'*': true,
-		
+	'*': false,
+
 	'UsuarioController': {
 		'create': 'isAuthenticated',
 		'update': 'isAuthenticated',
 		'destroy': 'isAuthenticated',
 		'remove': 'isAuthenticated',
-		'add': 'isAuthenticated'
+		'add': 'isAuthenticated',
+		'find': true,
+		'findOne': true
 	},
 	'DepartamentoController': {
 		'create': 'isAuthenticated',
 		'update': 'isAuthenticated',
 		'destroy': 'isAuthenticated',
 		'remove': 'isAuthenticated',
-		'add': 'isAuthenticated'		
+		'add': 'isAuthenticated',
+		'find': true,
+		'findOne': true
 	},
 	'ServicioController': {
 		'create': 'isAuthenticated',
 		'update': 'isAuthenticated',
 		'destroy': 'isAuthenticated',
 		'remove': 'isAuthenticated',
-		'add': 'isAuthenticated'
+		'add': 'isAuthenticated',
+		'find': true,
+		'findOne': true
+	},
+	'AuthController': {
+		'login': true,
+		'logout': true,
+		'loggedin': true
+	},
+	'AccesoController': {
+		//Cambiar a FALSE para no permitir crear usuarios administradores, que pueden
+		//borrar o crear nuevos usuarios del listin telefonico
+		'*': false
 	}
-	
-	
-  /***************************************************************************
-  *                                                                          *
-  * Here's an example of mapping some policies to run before a controller    *
-  * and its actions                                                          *
-  *                                                                          *
-  ***************************************************************************/
 
-	// RabbitController: {
-
-		// Apply the `false` policy as the default for all of RabbitController's actions
-		// (`false` prevents all access, which ensures that nothing bad happens to our rabbits)
-		// '*': false,
-
-		// For the action `nurture`, apply the 'isRabbitMother' policy
-		// (this overrides `false` above)
-		// nurture	: 'isRabbitMother',
-
-		// Apply the `isNiceToAnimals` AND `hasRabbitFood` policies
-		// before letting any users feed our rabbits
-		// feed : ['isNiceToAnimals', 'hasRabbitFood']
-	// }
 };

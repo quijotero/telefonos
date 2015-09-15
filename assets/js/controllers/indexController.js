@@ -6,10 +6,10 @@ app.controller("indexController", ["$scope","usuarioService","$modal",
 		$scope.registrosPorPagina = 25;
 	  $scope.paginaActual = 1;
 		usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC");
+
 		//Funcion llamada al cambiar de pagina el usuario
 		$scope.cambioPagina = function() {
 			usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC");
-			console.debug("Pagina actual:" + $scope.paginaActual);
 	  };
 
 		//Funcion que abre una ventana modal con información extra del usuario
@@ -31,7 +31,6 @@ app.controller("indexController", ["$scope","usuarioService","$modal",
 				//Cerrada pulsado Cerrar
 			}, function () {
 				//Cerrada pulsado Cancelar
-				console.debug('Info de usuario cancelada');
 			});
 		};
 		//Funcion que abre una ventana modal con confirmación del borrado
@@ -55,7 +54,6 @@ app.controller("indexController", ["$scope","usuarioService","$modal",
 				usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC");
 			}, function () {
 				//Cerrada pulsado Cancelar
-				console.debug('Eliminación de usuario cancelada');
 			});
 		};
 

@@ -3,7 +3,6 @@ module.exports = function(req, res, next) {
         return next();
     }
     else{
-        //return res.redirect('/login');
-		    return res.status(401).send('Operación no permitida sin autentificarse primero');
+		    return res.status(401).send('Servidor - Usuario no autentificado');
     }
 };

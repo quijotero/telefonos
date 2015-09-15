@@ -1,9 +1,9 @@
 //eliminamos el usuario dependiendo de su id
-app.controller("removeController", ["$scope","idUsuario","usuarioService","$modalInstance",
-							function removeController($scope,idUsuario,usuarioService,$modalInstance){
+app.controller("adminRemoveController", ["$scope","idUsuario","accesoService","$modalInstance",
+							function removeController($scope,idUsuario,accesoService,$modalInstance){
 		//Funcíon que cierra la ventana modal borrando el usuario
 	  $scope.ok = function () {
-			var record = new usuarioService.api();
+			var record = new accesoService.api();
 			record.id = idUsuario;
 			record.$delete(function() {
 				$modalInstance.close();
