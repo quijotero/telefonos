@@ -1,28 +1,28 @@
 //Servicios REST que llaman a la API de Sails via $resource
 
+
 //Factoria para consumir entidad usuarios
 app.factory("usuarioService", function ($resource) {
   return  {
     api:
     $resource("/usuario/:id", //la url donde queremos consumir
         //aquí podemos pasar variables que queramos pasar a la consulta
-        {id: '@id',limit: '@limit',skip: '@skip',sort: '@orden'},
+        {id: '@id',limit: '@limit',skip: '@skip',sort: '@orden',filtro: '@filtro'},
         {
              query: {method: 'GET', isArray: false},
             update: {method: 'PUT'},
             delete: {method: 'DELETE'}
         }
     ),
-    //Funcion que permite mostrar los resultados en distintas páginas
-    irPagina: function($scope,apiUsuarios,pagina,numeroRegistros,orden) {
+	irPagina: function(pagina,numeroRegistros,orden,filtro) {
       var saltarRegistros = (pagina -1) * numeroRegistros
-      //llama a la API saltando determinados registros según la página
-      apiUsuarios.api.get({limit: numeroRegistros,skip:  saltarRegistros,sort: orden })
+      //llama a la API saltando determinados registros según la página, devuelve la promesa
+       return this.api.get({limit: numeroRegistros,skip:  saltarRegistros,sort: orden,filtro:filtro })
         .$promise.then(function(data) {
-          $scope.totalUsuarios =  data.total;
-          $scope.usuarios = data.results;
-        });
-    }
+			//devuelve los datos
+			return data;
+        });		
+    }	
   }
 });
 

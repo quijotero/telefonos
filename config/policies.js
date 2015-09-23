@@ -35,7 +35,7 @@ module.exports.policies = {
 		'remove': 'isAuthenticated',
 		'add': 'isAuthenticated',
 		'find': true,
-		'findOne': true
+		'findOne': true		
 	},
 	'DepartamentoController': {
 		'create': 'isAuthenticated',
@@ -64,6 +64,10 @@ module.exports.policies = {
 		//Cambiar a FALSE para no permitir crear usuarios administradores, que pueden
 		//borrar o crear nuevos usuarios del listin telefonico
 		'*': false
+	},
+	'PruebaController': {
+		'*': true
 	}
+	
 
 };

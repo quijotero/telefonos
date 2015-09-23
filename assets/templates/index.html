@@ -1,17 +1,14 @@
+<!--sólo si hay usuarios mostramos el buscador-->
+<div class="form-group has-feedback">
+	<input type="text" class="form-control" ng-model="filtro" ng-change=filtrar() placeholder="Introduce filtro en la tabla" />
+	<i class="form-control-feedback glyphicon glyphicon-search"></i>
+</div>
 <!--si no hay usuarios que mostrar, con la directiva ng-show comprobamos
 el array usuarios y mostramos un mensaje-->
 <div ng-show="usuarios.length == 0">
 	<h3>No hay usuarios para mostrar</h2>
 </div>
-<!--creamos un campo de texto que nos servirá para buscar usuarios, simplemente
-le damos como ng-model el mismo que le demos al atributo filter en el loop de abajo,
-aparte de un buscador es un autocompletar, y más sencillo no puede ser-->
-<!--sólo si hay usuarios mostramos el buscador-->
-<div class="form-group has-feedback">
-	<input type="text" class="form-control" ng-model="buscador"  ng-show="usuarios.length > 0" placeholder="Introduce filtro en la tabla" />
-	<i class="form-control-feedback glyphicon glyphicon-search"></i>
-</div>
-<div class="table-responsive">
+<div class="table-responsive" ng-show="usuarios.length > 0">
 		<table class="table table-hover table-striped table-condensed">
 			<tr class="info">
 				<th>Apellidos</th>
@@ -23,7 +20,7 @@ aparte de un buscador es un autocompletar, y más sencillo no puede ser-->
 				<th></th>
 				<th></th>
 			</tr>
-			<tr ng-repeat="usuario in usuarios | filter: buscador" style="cursor: pointer;">
+			<tr ng-repeat="usuario in usuarios" style="cursor: pointer;">
 				<td ng-click="infoUsuarioOpen(usuario.id)">{{ usuario.apellidos}}</td>
 				<td ng-click="infoUsuarioOpen(usuario.id)">{{ usuario.nombre}}</td>
 				<td ng-click="infoUsuarioOpen(usuario.id)">{{ usuario.telefono1}}</td>
@@ -36,4 +33,5 @@ aparte de un buscador es un autocompletar, y más sencillo no puede ser-->
 		</table>
 		<pagination total-items="totalUsuarios" items-per-page="registrosPorPagina"
 			ng-model="paginaActual" ng-change="cambioPagina()" previous-text="&lsaquo;" next-text="&rsaquo;" max-size="10" rotate="false"></pagination>
-	</div>
+</div>
+

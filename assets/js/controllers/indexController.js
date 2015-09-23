@@ -1,17 +1,39 @@
 //Controlador de la pagina principal
 app.controller("indexController", ["$scope","usuarioService","$modal",
 	function($scope,usuarioService,$modal){
-
+				
 		//Para paginar la tabla cuando hay muchos registros
 		$scope.registrosPorPagina = 25;
-	  $scope.paginaActual = 1;
-		usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC");
-
+		$scope.paginaActual = 1;
+		/*
+		for (var prop in data){
+			console.log("data." + prop + "=" + data[prop]);	
+		}*/		
+		$scope.filtrar = function() {
+			console.log("filtrando por " + $scope.filtro);			
+			usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC",$scope.filtro)
+			.then(function (data) {
+				$scope.totalUsuarios =  data.total;
+				$scope.usuarios = data.results;
+			});		
+		}
+		
+		usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC")
+			.then(function (data) {
+				$scope.totalUsuarios =  data.total;
+				$scope.usuarios = data.results;
+			});		
+		
 		//Funcion llamada al cambiar de pagina el usuario
 		$scope.cambioPagina = function() {
-			usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC");
-	  };
-
+			usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC")
+			.then(function (data) {
+				$scope.totalUsuarios =  data.total;
+				$scope.usuarios = data.results;
+			});
+		};
+	  
+	
 		//Funcion que abre una ventana modal con información extra del usuario
 		$scope.infoUsuarioOpen = function (idUsuario) {
 			//Devuelve el obj que controla la ventana
@@ -51,7 +73,11 @@ app.controller("indexController", ["$scope","usuarioService","$modal",
 			removeUsuario.result.then(function () {
 				//Cerrada pulsado Borrar
 				//Refrescamos la tabla en la pagina actual
-				usuarioService.irPagina($scope,usuarioService,$scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC");
+				usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC")
+				.then(function (data) {
+					$scope.totalUsuarios =  data.total;
+					$scope.usuarios = data.results;
+				});	
 			}, function () {
 				//Cerrada pulsado Cancelar
 			});

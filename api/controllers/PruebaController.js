@@ -11,24 +11,23 @@ _config: {
 			rest: true
 		},
 /**
-	FUNCION find()
+	FUNCION Prueba()
 		
 	Responde a:	
-	GET /Usuario
-	GET /Usuario/:id
+	GET /prueba
+	GET /prueba/:id
 	
 	Realiza un filtrado, ordenacion y paginación de la entidad Usuario por los parametros
 	pasados en la URL, que pueden ser:
 		
  * Paramtros:
- * @param {String} id		   - Devuelve un usuario concreto, si existe este paramentro ignora los demás
  * @param {String} filtro      - nombre por el que filtar los resultados
  * @param {Integer} limit      - limitacion de los registros devueltos, para paginación
  * @param {Integer} skip       - número de registros a saltar, para paginación
  * @param {String} sort        - campo por el que ordenar, hay que poner detras ASC/DES
  * @return {JSON} objeto	   - devuelve un objeto JSON con las propiedades TOTAL (num. registros) y RESULT (datos)
 */
-	find: function (req, res) {	
+	prueba: function (req, res) {	
 		//Busca solo un usuario no la lista completa
 		var id =  req.param("id");
 		if ( id ) {			

@@ -20,7 +20,7 @@ app.controller("appController", ["$scope","$location","autentificado","$modal","
     $scope.usuarioAutentificado = false;
   });
 
-  //Funcion que abre una ventana modal con confirmación del borrado
+  //Funcion que abre una ventana modal con acercaDe
   $scope.acercadeOpen = function (idUsuario) {
     //Devuelve el obj que controla la ventana
     var acercaDe = $modal.open({

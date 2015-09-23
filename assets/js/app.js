@@ -1,5 +1,5 @@
 //creamos nuestro modulo llamado app
-var app = angular.module("app", ["ngResource","ngRoute","ui.bootstrap","angular-loading-bar"]);
+var app = angular.module("app", ["ngResource","ngRoute","ui.bootstrap","angular-loading-bar","ui.grid"]);
 
 //hacemos el ruteo de nuestra aplicación
 app.config(function($routeProvider, $locationProvider, $httpProvider){
@@ -92,14 +92,19 @@ app.config(function($routeProvider, $locationProvider, $httpProvider){
 		templateUrl : "templates/login.html",
 		controller : "loginController"
 	})
-  .when("/admin", {
+	.when("/admin", {
 		title: 'Administración',
 		templateUrl : "templates/administradores/admin.html",
 		controller : "adminController",
-    //Para que no cargue la pagina si no está activado el controlador antes
+		//Para que no cargue la pagina si no está activado el controlador antes
 		resolve: {
 			checkAdmin: checkAdministrador
 		}
+	})
+	.when("/prueba", {
+		title: 'Prueba',
+		templateUrl : "templates/prueba.html",
+		controller : "pruebaController"
 	})
  	.otherwise({ redirectTo : "/"})
 })

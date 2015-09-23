@@ -52,6 +52,8 @@ module.exports.routes = {
 
   '/logout': 'AuthController.logout',
 
-  '/loggedin': 'AuthController.loggedin'
+  '/loggedin': 'AuthController.loggedin',
+  
+  'get /prueba/:id?': 'PruebaController.prueba'
 
 };

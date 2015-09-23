@@ -32,6 +32,7 @@ var jsFilesToInject = [
   'js/dependencies/jquery.min.js',
   'js/dependencies/bootstrap.js',
   'js/dependencies/angular.js',
+  'js/dependencies/angular.min.js',
   'js/dependencies/angular*.js',
   'js/dependencies/ui-bootstrap*.js',
   'js/dependencies/**/*.js',
