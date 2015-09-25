@@ -2,7 +2,7 @@
 
 
 //Factoria para consumir entidad usuarios
-app.factory("usuarioService", function ($resource) {
+app.factory("usuarioService",['$resource', function ($resource) {
   return  {
     api:
     $resource("/usuario/:id", //la url donde queremos consumir
@@ -24,10 +24,10 @@ app.factory("usuarioService", function ($resource) {
         });		
     }	
   }
-});
+}]);
 
 //Factoria para consumir la entidad departamento
-app.factory("departamentoService", function ($resource) {
+app.factory("departamentoService",['$resource', function ($resource) {
   return  {
     api:
     $resource("/departamento/:id", //la url donde queremos consumir
@@ -39,10 +39,10 @@ app.factory("departamentoService", function ($resource) {
         }
     )
   }
-});
+}]);
 
 //Factoria para consumir la entidad departamento
-app.factory("servicioService", function ($resource) {
+app.factory("servicioService",['$resource', function ($resource) {
   return {
     api:
     $resource("/servicio/:id", //la url donde queremos consumir
@@ -54,10 +54,10 @@ app.factory("servicioService", function ($resource) {
         }
     )
   }
-});
+}]);
 
 //Factoria para consumir la entidad acceso
-app.factory("accesoService", function ($resource) {
+app.factory("accesoService", ['$resource', function ($resource) {
   return  {
     api:
     $resource("/acceso/:id", //la url donde queremos consumir
@@ -69,35 +69,73 @@ app.factory("accesoService", function ($resource) {
         }
     )
   }
-});
+}]);
 
 /** Provider que consulta la API en la ruta /loggedin para saber si el usuario
 *   actual está autentificado. La API devuelve error 401 si no lo está o
 *   un objeto con varias propiedades si está autentificado. Tambien puede
-*   devolver 0 si hay algún problema con el usuario. Para usarla llamar a la
-*   funcion pasándole dos funciones como parametros: Ok() y Error()
+*   devolver 0 si hay algún problema con el usuario. 
+*	Es llamada esta función desde appController.js para comprobar si se muestran
+*   o no los botones de edicion/borrado, devuelve una promesa.
 */
-function autentificadoProvider() {
-  this.$get=['$http',function($http) {
-    return new autentificado($http);
-  }];
-}
-function autentificado($http) {
-  this.get=function(fnOK,fnError) {
-        $http({
-          method: 'GET',
-          url: "/loggedin"
-        }).success(function(data, status, headers, config) {
-            if(data == 0) { //problema con el usuario autentificado
-              fnError(data,status);
-            }
-            else {
-              fnOK(data);
-            }
-        }).error(function(data, status, headers, config) {
-            //no ha podido recuperar la informacion del servidor,error 401
-            fnError(data,status);
-        });
-      }
-}
-app.provider("autentificado",autentificadoProvider);
+app.factory('autentificado', function($q, $http,$location) {
+	return {
+		get: function() {
+  
+		  var deferred = $q.defer();
+		  //Llamada AJAX para comprobar si está autentificado
+			$http.get('/loggedin')
+			  .success(function(user){
+				  //Autentificado
+				  if (user !== '0') {
+					deferred.resolve();
+				  }
+				  // No autentificado
+				  else {
+					deferred.reject();
+					$location.url('/login');
+				  }
+			//Error en la llamada AJAX,p.j. codigo 401
+			}).error(function(user) {
+				deferred.reject();
+				$location.url('/login');
+			});
+		  return deferred.promise;
+		}
+	}
+});
+
+/** Factoria que comprueba si se puede entrar en la consola de administracion
+* antes de cargar la página para evitar flick(), hay que activar primero
+* la opción en "policies.js" y poner el controlador a TRUE
+* Devuelve una promesa correcta o no, es usada desde app.js para no cargar
+* la ruta si no está activada la administración, y también se usa desde 
+* appController.js para activar o no la opción correspondiente en la barra superior
+*/
+app.factory('esAdmin', function($q, $http,$location) {
+	return {
+		get: function() {
+  
+		  var deferred = $q.defer();
+		  //Llamada AJAX para comprobar si está autentificado
+			$http.get('/acceso')
+			  .success(function(user){
+				  //Autentificado
+				  if (user !== '0') {
+					deferred.resolve();
+				  }
+				  // No autentificado
+				  else {
+					deferred.reject();
+					$location.url('/');
+				  }
+			//Error en la llamada AJAX,p.j. codigo 401
+			}).error(function(user) {
+				deferred.reject();
+				$location.url('/');
+			});
+		  return deferred.promise;
+		}
+	}
+});
+

@@ -9,26 +9,30 @@ TODO:
 
 - quitar "pruebas" de angular y de la api
 - formatear y comentar codigo
-- poner versiones mimificadas de angular
-- (ok)filtar en la tabla principal, desde el servidor no en local:
-		- (ok)falta poner total y results en la vuelta de los datos
+- poner versiones mimificadas de angular y del resto "sails lift --prod"
 - (ahora)Ordenar tabla por varios campos, usando ngGrid
 - (ahora)ajustar proporcion de los campos de la tabla		
-		
-- (ok)evitar traerse datos innecesarios en la lista principal de telefonos (mejor vistas mysql)
-- (ok)Arreglar servicio usuariosService.irPagina, pasa parametros mal y muchos
+
+- (ok)Poder depurar con ""node-inspector": 
+		- Ejecutar con sails debug 
+		- Abrir navegador: http://localhost:8080/debug?port=5858
+- (ok)filtar en la tabla principal, desde el servidor no en local:
+		- (ok)falta poner total y results en la vuelta de los datos		
+- (ok) Mejorado y simplificado la gestion del login y administración de usuarios
+- (ok) evitar traerse datos innecesarios en la lista principal de telefonos (mejor vistas mysql)
+- (ok) Arreglar servicio usuariosService.irPagina, pasa parametros mal y muchos
 - (ok) Parece que al crear usuarios manda datos de todos los departamentos y servicios
 - (ok) cambiar a puerto 80: creado el fichero "puerto.js"
 - (ok) hacer un modo dar alta nuevos accesos de administrador y activarlo por
-  politicas o no. Se hace modificando policies.js
+		politicas o no. Se hace modificando policies.js
 - (ok) Poner cargando al traerse datos del servidor, por si fuera lento
 - (ok) quitar comentarios en consola
 - (ok) evitar parpadeo en redirección al login sin autentificar
 - (ok) Acerca de poner ventana
 - (ok) falla al poner login/logout
-- (ok)controlar error en login
-- (ok)No funciona en IExplorer 11
-- (ok)No debe devolver nada json que en ie11 se pone a descargarlo
+- (ok) controlar error en login
+- (ok) No funciona en IExplorer 11
+- (ok) No debe devolver nada json que en ie11 se pone a descargarlo
 - (ok) mejorar codigo de autentificacion (servicio y controlador)
 - (ok) Pedir autentificación para poder modificar datos de los usuarios
 - (ok) controlar acceso desde angular consultado /loggedin

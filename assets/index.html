@@ -28,9 +28,10 @@
             <ul class="nav navbar-nav">
                 <li ng-class="{ active: isActive('/') }"><a href="#/">Inicio</a></li>
                 <li ng-class="{ active: isActive('/add') }"><a href="#/add">Añadir usuario</a></li>
-								<li ng-if="!usuarioAutentificado" ng-class="{ active: isActive('/login') }"><a href="#/login">Login</a></li>
-								<li ng-if="usuarioAutentificado"><a href="/logout">Logout</a></li>
-								<li><a ng-click="acercadeOpen()">Acerca de</a></li>
+				<li ng-if="!usuarioAutentificado" ng-class="{ active: isActive('/login') }"><a href="#/login">Login</a></li>
+				<li ng-if="usuarioAutentificado"><a href="/logout">Logout</a></li>
+				<li ng-if="usuarioAdmin" ng-class="{ active: isActive('/admin') }"><a href="#/admin">Administración</a></li>
+				<li><a ng-click="acercadeOpen()">Acerca de</a></li>
             </ul>
 			</nav>
 		  <!--aquí es donde cargarán todas las vistas dependiendo de la url-->

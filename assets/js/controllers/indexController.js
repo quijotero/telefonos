@@ -9,24 +9,28 @@ app.controller("indexController", ["$scope","usuarioService","$modal",
 		for (var prop in data){
 			console.log("data." + prop + "=" + data[prop]);	
 		}*/		
+
+		usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC",$scope.filtro)
+			.then(function (data) {
+				$scope.totalUsuarios =  data.total;
+				$scope.usuarios = data.results;
+			});		
+
+		//--------------------------------------------------
+		// FUNCIONES DEL CONTROLADOR
+		//--------------------------------------------------		
+		//Funcion llamada al escribir en el campo de filtrado algún caracter, filtra los resultados
 		$scope.filtrar = function() {
-			console.log("filtrando por " + $scope.filtro);			
 			usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC",$scope.filtro)
 			.then(function (data) {
 				$scope.totalUsuarios =  data.total;
 				$scope.usuarios = data.results;
 			});		
 		}
-		
-		usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC")
-			.then(function (data) {
-				$scope.totalUsuarios =  data.total;
-				$scope.usuarios = data.results;
-			});		
-		
+			
 		//Funcion llamada al cambiar de pagina el usuario
 		$scope.cambioPagina = function() {
-			usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC")
+			usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC",$scope.filtro)
 			.then(function (data) {
 				$scope.totalUsuarios =  data.total;
 				$scope.usuarios = data.results;
@@ -73,7 +77,7 @@ app.controller("indexController", ["$scope","usuarioService","$modal",
 			removeUsuario.result.then(function () {
 				//Cerrada pulsado Borrar
 				//Refrescamos la tabla en la pagina actual
-				usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC")
+				usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC",$scope.filtro)
 				.then(function (data) {
 					$scope.totalUsuarios =  data.total;
 					$scope.usuarios = data.results;
