@@ -9,7 +9,7 @@ app.controller("removeController", ["$scope","idUsuario","usuarioService","$moda
 				$modalInstance.close();
 			})
 	  };
-		//Funcíon que cierra la ventana modal sin borrar
+		//Función que cierra la ventana modal sin borrar
 	  $scope.cancel = function () {
 	    $modalInstance.dismiss('cancel');
 	  };

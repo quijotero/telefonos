@@ -11,14 +11,7 @@ app.controller("loginController", ["$scope","$location","$http","$window",
     $scope.loginError = false;
     if(formularioValido)
     {
-      //Aqui hay que ver si el usuario es correcto y si no redirigir a login
-      /* NO USAR ESTA FORMA de HTTP: codifica los datos como JSON, no como form
-       $http({
-         method  : 'POST',
-         url     : '/login',
-         data    : $scope.usuario.nombre, //forms user object
-         headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-       })*/
+      //Aqui hay que ver si el usuario es correcto y si no redirigir a login      
       $http.post("/login",$scope.usuario)
          .success(function(data) {
            if (data.errors) {
@@ -29,8 +22,6 @@ app.controller("loginController", ["$scope","$location","$http","$window",
              //todo correcto, redirigir a inicio pero autentificado ya
             $scope.loginError = false;
              $window.location.href ="/";
-             //No usar esto que no refresca la pagina principal desde el principio
-             //$location.url("/");
            }
          })
          //Acceso denegado, error 401 normalmente

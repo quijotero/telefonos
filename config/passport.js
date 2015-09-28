@@ -17,7 +17,8 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   },
   function(nombre, password, done) {
-
+	
+	//Busca al usuario en la entidad Acceso
     Acceso.findOne({ nombre: nombre }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {

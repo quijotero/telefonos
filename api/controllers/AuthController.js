@@ -20,19 +20,10 @@ module.exports = {
         passport.authenticate('local',
           function(err, user, info) {
             if ((err) || (!user)) {
-
-                /*return res.send({
-                    message: info.message,
-                    user: user
-                });*/
                 return  res.status(401).send('Servidor - Usuario no autentificado'); 
             }
             req.logIn(user, function(err) {
-                if (err) res.redirect("/login");//res.send(err);
-                /*return res.send({
-                    message: info.message,
-                    user: user
-                });*/
+                if (err) res.redirect("/login");
                 return res.redirect("/");
             });
         })(req, res);
@@ -52,7 +43,6 @@ module.exports = {
           res.send(req.user);
         }
         else {
-          //res.forbidden('Servidor - Usuario no autentificado');
           res.status(401).send('Servidor - Usuario no autentificado');
         }
     }

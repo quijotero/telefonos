@@ -27,7 +27,7 @@ module.exports.models = {
   * See http://sailsjs.org/#!/documentation/concepts/ORM/model-settings.html  *
   *                                                                          *
   ***************************************************************************/
-   migrate: 'alter'
+   migrate: 'safe'
    // Poner 'alter' si queremos que se creen las tablas automaticamente
    //migrate: 'alter'
 

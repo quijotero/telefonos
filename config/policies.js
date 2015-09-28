@@ -65,9 +65,5 @@ module.exports.policies = {
 		//borrar o crear nuevos usuarios del listin telefonico
 		'*': false
 	},
-	'PruebaController': {
-		'*': true
-	}
-	
 
 };

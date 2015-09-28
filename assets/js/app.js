@@ -1,5 +1,5 @@
 //creamos nuestro modulo llamado app
-var app = angular.module("app", ["ngResource","ngRoute","ui.bootstrap","angular-loading-bar","ui.grid"]);
+var app = angular.module("app", ["ngResource","ngRoute","ui.bootstrap","angular-loading-bar"]);
 
 //hacemos el ruteo de nuestra aplicación
 app.config(function($routeProvider, $locationProvider, $httpProvider){
@@ -48,11 +48,6 @@ app.config(function($routeProvider, $locationProvider, $httpProvider){
 							return esAdmin.get()
 						}
 		}
-	})
-	.when("/prueba", {
-		title: 'Prueba',
-		templateUrl : "templates/prueba.html",
-		controller : "pruebaController"
-	})
+	})	
  	.otherwise({ redirectTo : "/"})
 })

@@ -1,7 +1,8 @@
 /**
  * UsuarioController
  *
- * @description :: Server-side logic for managing usuarios
+ * @description :: controlador de la entidad Usuario, tiene sobreescritas las funciones
+					finOne() y find(), para añadir funcionalidad de filtrado en desde el servidor
  * 
  */
 module.exports = {
@@ -18,7 +19,7 @@ _config: {
 	
 	Devuelve un usuario concreto, con su departamento y servicio
 		
- * Paramtros:
+ * Parametros:
  * @param {String} id		   - Devuelve un usuario concreto, el indicado por este parámetro
  * @return {JSON} objeto	   - devuelve un objeto JSON con las propiedades TOTAL (num. registros) y RESULT (datos)
 */
@@ -87,18 +88,6 @@ _config: {
 				//Devuelve los resultados y su numero en un json
 				res.json(data);
 			});
-		});
-		/*
-		Usuario.query(
-			"Select usuario.id,usuario.nombre,usuario.apellidos,usuario.telefono1,usuario.telefono2," + 
-				"departamento.nombre as departamento, " +
-				"servicio.nombre as servicio " +
-				"from usuario,departamento,servicio " +
-				"where usuario.departamento=departamento.id and usuario.servicio=servicio.id", 
-			function(err, results) {
-				if (err) return res.serverError(err);
-				return res.ok(results);
-		});
-		*/						
+		});						
 	}				
 };

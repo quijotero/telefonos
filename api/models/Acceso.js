@@ -1,7 +1,7 @@
 /**
 * Acceso.js
 *
-* @description :: Modelo para autentificacion
+* @description :: Modelo para autentificacion, guarda los usuarios que permiten hacer login
 * @docs        :: http://iliketomatoes.com/implement-passport-js-authentication-with-sails-js-0-10-2/
 */
 

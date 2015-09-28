@@ -5,11 +5,7 @@ app.controller("indexController", ["$scope","usuarioService","$modal",
 		//Para paginar la tabla cuando hay muchos registros
 		$scope.registrosPorPagina = 25;
 		$scope.paginaActual = 1;
-		/*
-		for (var prop in data){
-			console.log("data." + prop + "=" + data[prop]);	
-		}*/		
-
+	
 		usuarioService.irPagina($scope.paginaActual,$scope.registrosPorPagina,"apellidos ASC",$scope.filtro)
 			.then(function (data) {
 				$scope.totalUsuarios =  data.total;
