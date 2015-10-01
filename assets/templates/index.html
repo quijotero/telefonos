@@ -1,6 +1,6 @@
 <!--sólo si hay usuarios mostramos el buscador-->
 <div class="form-group has-feedback">
-	<input type="text" class="form-control" ng-model="filtro" ng-change=filtrar() placeholder="Introduce texto a buscar" />
+	<input type="text" class="form-control" ng-model="filtro" ng-change=recargar() placeholder="Introduce texto a buscar" />
 	<i class="form-control-feedback glyphicon glyphicon-search"></i>
 </div>
 <!--si no hay usuarios que mostrar, con la directiva ng-show comprobamos
@@ -10,9 +10,29 @@ el array usuarios y mostramos un mensaje-->
 </div>
 <div class="table-responsive" ng-show="usuarios.length > 0">
 		<table class="table table-hover table-striped table-condensed">
-			<tr class="info">
-				<th>Apellidos</th>
-				<th>Nombre</th>
+			<tr class="info">			
+				<th ng-click="ordenar('apellidos')">
+					<div ng-switch  on="apellidos">
+						<div ng-switch-when="ASC">
+							<a><span class='glyphicon glyphicon-arrow-up'></span> Apellidos</a>
+						</div>
+						<div ng-switch-when="DESC">
+							<a><span class='glyphicon glyphicon-arrow-down'></span> Apellidos</a>
+						</div>
+						<div ng-switch-default><a>Apellidos</a></div>
+					</div>					
+				</th>
+				<th ng-click="ordenar('nombre')">
+					<div ng-switch  on="nombre">
+						<div ng-switch-when="ASC">
+							<a><span class='glyphicon glyphicon-arrow-up'></span> Nombre</a>
+						</div>
+						<div ng-switch-when="DESC">
+							<a><span class='glyphicon glyphicon-arrow-down'></span> Nombre</a>
+						</div>
+						<div ng-switch-default><a>Nombre</a></div>
+					</div>					
+				</th>
 				<th>Teléfono 1</th>
 				<th>Teléfono 2</th>
 				<th>Departamento</th>
@@ -32,6 +52,6 @@ el array usuarios y mostramos un mensaje-->
 			</tr>
 		</table>
 		<pagination total-items="totalUsuarios" items-per-page="registrosPorPagina"
-			ng-model="paginaActual" ng-change="cambioPagina()" previous-text="&lsaquo;" next-text="&rsaquo;" max-size="10" rotate="false"></pagination>
+			ng-model="paginaActual" ng-change="recargar()" previous-text="&lsaquo;" next-text="&rsaquo;" max-size="10" rotate="false"></pagination>
 </div>
 
