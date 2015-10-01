@@ -10,9 +10,12 @@ TODO:
 - quitar "pruebas" de angular y de la api
 - formatear y comentar codigo
 - poner versiones mimificadas de angular y del resto "sails lift --prod"
-- (ahora)Ordenar tabla por varios campos, usando ngGrid
+- (ok)Ordenar tabla por varios campos, nombre y apellidos
+	- indicar de algun modo que campo es el que ordena en la tabla
+- redirige al login algunas veces al visualizar la pagina principal
 - (ahora)ajustar proporcion de los campos de la tabla		
 
+- (ok)casca al ordenar por un campo que no existe en la tabla, poniendo apellidos2 por ejemplo
 - (ok)Poder depurar con ""node-inspector": 
 		- Ejecutar con sails debug 
 		- Abrir navegador: http://localhost:8080/debug?port=5858

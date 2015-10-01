@@ -49,7 +49,6 @@ app.controller("adminController", ["$scope","accesoService","$modal",
 				record.password = $scope.usuario.password;
 				record.$save(function() {
 					crearUsuarioError=false;
-					console.log("Usuario administrador creado correctamente");
 					//Refrescamos la tabla para visualizar el nuevo usuario
 					accesoService.api.query().$promise.then(function(data){
 							$scope.totalUsuarios =  data.total;
@@ -57,7 +56,6 @@ app.controller("adminController", ["$scope","accesoService","$modal",
 					});
 				},function() {
 					crearUsuarioError=true;
-					console.log("Error al crear usuario administrador");
 				})
 			}
 		}

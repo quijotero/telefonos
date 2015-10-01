@@ -61,6 +61,13 @@ _config: {
 		var limit    =req.param('limit') || 25; 
 		var sort     =req.param('sort') || "";
 		var skip     =req.param('skip') || 0;
+		//Evita que el parametro limit no sea numerico, eso interrumpe el programa
+		if(isNaN(limit)) limit=25;	
+		//Evita intentar ordenar por un campo que no existe, eso interrumpe el programa
+		if(sort != "nombre ASC"  && sort !="apellidos ASC" &&
+		   sort != "nombre DESC" && sort !="apellidos DESC") sort ="";
+		//Evita que el parametro skip no sea numerico
+		if(isNaN(skip)) skip=0;	
 		//Para poder filtar por cualquier parte del campo nombre y apellidos
 		var where    = {or:[
 							{'nombre':{'contains':filtro}},

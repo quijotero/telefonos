@@ -1,5 +1,5 @@
 //creamos nuestro modulo llamado app
-var app = angular.module("app", ["ngResource","ngRoute","ui.bootstrap","angular-loading-bar","ui.grid"]);
+var app = angular.module("app", ["ngResource","ngRoute","ui.bootstrap","angular-loading-bar","ui.grid","ngSanitize"]);
 
 //hacemos el ruteo de nuestra aplicación
 app.config(function($routeProvider, $locationProvider, $httpProvider){
